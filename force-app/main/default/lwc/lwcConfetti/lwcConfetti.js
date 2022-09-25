@@ -1,8 +1,10 @@
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
 import Confetti from "@salesforce/resourceUrl/confetti";
 import { loadScript } from "lightning/platformResourceLoader";
 
 export default class LwcConfetti extends LightningElement {
+  @api confettiType;
+
   colors = [
     "#610B0B",
     "#FFFF00",
@@ -28,7 +30,28 @@ export default class LwcConfetti extends LightningElement {
       return;
     }
     this.confettiInitialized = true;
-    loadScript(this, Confetti);
+    loadScript(this, Confetti).then(() => {
+      console.log(this.confettiType.toLowerCase());
+      switch (this.confettiType.toLowerCase()) {
+        case "cannon":
+          this.basicCannon();
+          break;
+        case "fireworks":
+          this.fireworks();
+          break;
+        case "shower":
+          this.confettiShower();
+          break;
+        case "winner":
+          this.winnerCelebration();
+          break;
+        case "burst":
+          this.burstMode();
+          break;
+        default:
+          this.basicCannon();
+      }
+    });
   }
 
   basicCannon() {
@@ -66,13 +89,15 @@ export default class LwcConfetti extends LightningElement {
   }
 
   confettiShower() {
-    const end = Date.now() + 30 * 100;
+    const end = Date.now() + 15 * 100;
     const colors = this.colors;
 
     (function frame() {
       confetti({
         particleCount: 20,
-        startVelocity: 0,
+        spread: 70,
+        // particleCount: 20,
+        // startVelocity: 0,
         ticks: 300,
         origin: {
           x: Math.random(),
