@@ -4,14 +4,12 @@
     <isExposed>true</isExposed>
     <masterLabel>Display Confetti</masterLabel>
     <targets>
-        <target>lightning__RecordPage</target>
-        <target>lightning__AppPage</target>
-        <target>lightning__HomePage</target>
         <target>lightning__FlowScreen</target>
     </targets>
     <targetConfigs>
-        <targetConfig targets="lightning__FlowScreen">
-            <property label="Confetti Type" name="confettiType" type="String" role="inputOnly" description="Choose from Canon, Fireworks, Winner, Burst, Shower" />
+        <targetConfig targets="lightning__FlowScreen"
+        configurationEditor="c-lwc-confetti-editor-c-p-e">
+            <property name="confettiType" type="String"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

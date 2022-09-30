@@ -1,0 +1,17 @@
+<template>
+  <div class="confetti-selector slds-p-around_xx-small">
+    <label for="confettiType">Select Confetti Type:</label>
+    <select class="slds-select"
+      name="confettiType"
+      id="confettiType"
+      onchange={handleChange}>
+      <option value="select">Select Type</option>
+      <option selected={setCannon} value="Cannon">Cannon</option>
+      <option selected={setFireworks} value="Fireworks">Fireworks</option>
+      <option selected={setWinner} value="Winner">Winner</option>
+      <option selected={setBurst} value="Burst">Burst</option>
+      <option selected={setShower} value="Shower">Shower</option>
+    </select>
+    <div style="color:red;" if:true={showError}>Select a confetti type</div>
+  </div>
+</template>

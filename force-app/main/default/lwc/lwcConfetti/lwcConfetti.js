@@ -31,7 +31,6 @@ export default class LwcConfetti extends LightningElement {
     }
     this.confettiInitialized = true;
     loadScript(this, Confetti).then(() => {
-      console.log(this.confettiType.toLowerCase());
       switch (this.confettiType.toLowerCase()) {
         case "cannon":
           this.basicCannon();
